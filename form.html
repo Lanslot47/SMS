@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <h1>form</h1>
+
+        <div>
+            <input type="text" class="email" placeholder="enter Email">
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="number" id="age" placeholder="Enter age">
+        </div>
+        <button>cancel</button>
+    </form>
+
+    <script>
+
+        const button = document.querySelector("button");
+        const form = document.querySelector("form");
+
+        function cancel(exit) {
+            exit.preventDefault()
+            form.style.visibility = "hidden";
+
+        }
+        button.addEventListener("click", cancel);
+    </script>
+</body>
+
+</html>
