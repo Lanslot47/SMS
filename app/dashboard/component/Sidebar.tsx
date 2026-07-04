@@ -19,28 +19,28 @@ const Sidebar = () => {
     {
       id: 1,
       title: "Dashboard",
-      url: "/",
+      url: "../dashboard",
       icon: LayoutDashboard,
     },
 
     {
       id: 2,
       title: "Staff",
-      url: "/staff",
+      url: "../dashboard/staff",
       icon: Users,
     },
 
     {
       id: 3,
       title: "Student",
-      url: "/student",
+      url: "../dashboard/student",
       icon: GraduationCap,
     },
 
     {
       id: 4,
       title: "Reports",
-      url: "/reports",
+      url: "../dashboard/reports",
       icon: Calendar,
     },
   ];
