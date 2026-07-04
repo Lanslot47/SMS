@@ -14,35 +14,50 @@ const Page = () => {
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError]= useState('')
+const [message, setMessage] = useState("");
+const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const handleLogin = async () => {
-    try {
-      setLoading(true)
-      const res = await fetch(`${apiUrl}/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ userName, password })
-      })
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.message)
-        alert(error)
-        // throw new Error(data.error || "Invalid Credentials")
-        setLoading(false)
-      }
-      if (data.success) {
-        alert("Login Successfully, Redirecting.....")
-        router.push('../dashboard ')
-      }
-    } catch (error) {
-      console.log(error)
+  try {
+    setLoading(true);
+    setMessage("");
+    setMessageType("");
+
+    const res = await fetch(`${apiUrl}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setMessage(data.message || "Invalid username or password");
+      setMessageType("error");
+      return;
     }
-    finally {
-      setLoading(false)
+
+    if (data.success) {
+      setMessage(data.message || "Login successful. Redirecting...");
+      setMessageType("success");
+
+      setTimeout(() => {
+        router.push("../dashboard");
+      }, 1500);
     }
+  } catch (error) {
+    console.log(error);
+
+    setMessage("Something went wrong. Please try again.");
+    setMessageType("error");
+  } finally {
+    setLoading(false);
   }
+};
   return (
     <div className="min-h-screen flex bg-gray-100">
 
@@ -93,6 +108,17 @@ const Page = () => {
           <p className="text-center text-gray-500 mt-2 mb-8">
             Sign in to access your management dashboard
           </p>
+          {message && (
+  <div
+    className={`mb-6 w-full rounded-xl border px-4 py-3 text-sm font-medium transition-all duration-300 break-words ${
+      messageType === "success"
+        ? "border-green-200 bg-green-50 text-green-700"
+        : "border-red-200 bg-red-50 text-red-700"
+    }`}
+  >
+    {message}
+  </div>
+)}
 
           {/* USERNAME */}
 
