@@ -22,7 +22,7 @@ const [messageType, setMessageType] = useState<"success" | "error" | "">("");
     setMessage("");
     setMessageType("");
 
-    const res = await fetch(`${apiUrl}/api/create-admin`, {
+    const res = await fetch(`${apiUrl}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,11 +42,11 @@ const [messageType, setMessageType] = useState<"success" | "error" | "">("");
     }
 
     if (data.success) {
-      setMessage(data.message || "Login successful. Redirecting...created, successfully");
+      setMessage(data.message || "Login successful. Redirecting...");
       setMessageType("success");
 
       setTimeout(() => {
-        // router.push("../dashboard");
+        router.push("../dashboard");
       }, 1500);
     }
   } catch (error) {
