@@ -303,7 +303,7 @@ const Staff = () => {
             <button
               onClick={createStaff}
               disabled={loading}
-              className="flex-1 h-11 rounded-lg bg-sky-400 hover:bg-sky-500 text-white font-semibold"
+              className="flex-1 h-13 p-2 rounded-lg bg-sky-400 hover:bg-sky-500 text-white font-semibold"
             >
               {loading ? "Creating..." : "Create Staff"}
             </button>

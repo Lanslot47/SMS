@@ -319,7 +319,7 @@ const Page = () => {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="flex-1 h-11 rounded-lg bg-sky-400 hover:bg-sky-500 transition-all text-white font-semibold"
+              className="flex-1 h-13 rounded-lg bg-sky-400 p-2 hover:bg-sky-500 transition-all text-white font-semibold"
             >
               {loading ? "Creating..." : "Enroll Student"}
             </button>
